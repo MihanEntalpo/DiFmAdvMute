@@ -11,7 +11,7 @@
 //Counter of checks
 var advMuteCheckCount = 0;
 //Is debug box need to be showed?
-var displayDebugBox = false;
+var displayDebugBox = true;
 
 /**
 * Check is volume muted
