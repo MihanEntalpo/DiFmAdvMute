@@ -30,6 +30,17 @@ function volumeClick()
 }
 
 /**
+* Emulate click on "play" button, if paused
+*/
+function playClick()
+{
+    var playButton = jQuery('a[aria-label=play]');
+    if (playButton.length > 0) {
+        playButton.trigger('click');
+    }
+}
+
+/**
 * Check, if adverstment playing
 */
 function isAdverstmentPlaying()
@@ -91,12 +102,14 @@ function checkAdv()
         
 }
 
+
 /**
 * Check for modal window, and close it
 */
 function checkModal() {
     if ($('.modal-dialog').is(':visible')) {
         $('button[data-dismiss=modal]').trigger('click');
+        playClick();
     }
 }
 
