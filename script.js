@@ -11,7 +11,7 @@
 //Counter of checks
 var advMuteCheckCount = 0;
 //Is debug box need to be showed?
-var displayDebugBox = true;
+var displayDebugBox = false;
 
 /**
 * Check is volume muted
@@ -27,6 +27,17 @@ function isVolumeMuted()
 function volumeClick()
 {
     jQuery('a[aria-label=volume]').trigger('click');
+}
+
+/**
+* Emulate click on "play" button, if paused
+*/
+function playClick()
+{
+    var playButton = jQuery('a[aria-label=play]');
+    if (playButton.length > 0) {
+        playButton.trigger('click');
+    }
 }
 
 /**
@@ -91,6 +102,17 @@ function checkAdv()
         
 }
 
+
+/**
+* Check for modal window, and close it
+*/
+function checkModal() {
+    if ($('.modal-dialog').is(':visible')) {
+        $('button[data-dismiss=modal]').trigger('click');
+        playClick();
+    }
+}
+
 /**
 * Run everysecond check
 */
@@ -99,5 +121,6 @@ $(function()
     debug("AdvMute Init!");
 
     setInterval(checkAdv, 1000);
+    setInterval(checkModal, 1000);
 });
 
